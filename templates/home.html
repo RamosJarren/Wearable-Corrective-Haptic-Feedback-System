@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <title>HandMonitor System</title>
+        <!-- Assuming these files exist or are empty placeholders for now -->
+        <link rel="stylesheet" href="css/general-style.css"/>
+        <link rel="stylesheet" href="css/home-style.css"/> <!-- Specific CSS for this layout -->
+        <link rel="stylesheet" href="css/responsive.css"/>
+        <link href="https://db.onlinewebfonts.com/c/dd94ddf99b6082e709d2d5e47508fd56?family=SAA+Series+W01+EM+D" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- ===== MAIN DASHBOARD CONTAINER ===== -->
+        <div class="dashboard-layout">
+
+            <!-- ===== MINI SIDEBAR (LEFT ICON BAR) ===== -->
+            <aside class="mini-sidebar">
+                <button id="toggle-sidebar" aria-label="Toggle sidebar" aria-expanded="false">☰</button>
+                <a href="home.html"><img src="css/images/home-icon.png" alt="Home" /></a>
+            </aside>
+
+            <!-- Backdrop for sidebar when open -->
+            <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+            <!-- ===== MAIN SIDEBAR (PROFILE & NAVIGATION) ===== -->
+            <aside class="sidebar">
+                <nav>
+                    <ul class="sidebar-nav">
+                        <li class="menu-divider"></li>
+                        <li><a href="dashboard.html" class="nav-item"><span class="menu-icon"><img src="css/images/dashboard-icon.png" width="20" height="20" alt="Dashboard"/></span><span>Dashboard</span></a></li>
+                        <li><a href="patients.html" class="nav-item"><span class="menu-icon"><img src="css/images/patients-icon.png" width="20" height="20" alt="Patients"/></span><span>Patients</span></a></li>
+                        <li><a href="sessions.html" class="nav-item submenu-item">Sessions</a></li>
+                        <li><a href="data visualization.html" class="nav-item submenu-item">Data Visualization</a></li>
+                        <li class="menu-divider"></li>
+                    </ul>
+                </nav>
+            </aside>
+
+           <main class="main-content">
+                <div class="container-fluid p-4">
+                    
+                    <!-- SECTION 1: HERO & PROJECT OVERVIEW -->
+                    <div class="handmonitor-hero-container">
+                        <h1 class="hero-title">HandMonitor</h1>
+                    </div>
+
+                    <div class="description-container mb-5">
+                        <h2 class="mb-3 text-primary">Project Overview: The HandMonitor System</h2>
+                        <p class="description-text lead">
+                            The HandMonitor is an innovative, low-cost haptic glove system designed to transform the landscape of stroke rehabilitation. By integrating advanced wearable technology with real-time data processing, the system provides immediate corrective feedback to enhance finger movement accuracy, functional grasping, and overall hand dexterity.
+                        </p>
+                    </div>
+
+                    <!-- SECTION 2: MISSION & ABOUT -->
+                    <div class="row mb-5">
+                        <div class="col-lg-7">
+                            <h3 class="font-weight-bold">Redefining Stroke Recovery</h3>
+                            <p>Welcome to the future of accessible rehabilitation. HandMonitor is a research-driven, wearable system specifically engineered to help stroke survivors regain independence by restoring hand mobility.</p>
+                            <div class="p-3 bg-light border-left border-info rounded">
+                                <h4 class="h5 font-weight-bold">Our Mission</h4>
+                                <p class="mb-0 small">Traditional rehabilitation can be costly and difficult to access. We aim to bridge the gap between hospital therapy and daily life through real-time technology that guides patients toward functional movement in a home-based environment.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="alert alert-info shadow-sm h-100 d-flex flex-column justify-content-center">
+                                <h4 class="h5 font-weight-bold">Impact Statement</h4>
+                                <p class="small mb-0">HandMonitor addresses the critical demand for a precise yet affordable rehabilitation tool. By moving sophisticated therapy from the clinic to the home, we provide a practical path toward motor autonomy.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3: TECHNICAL ARCHITECTURE & DATA -->
+                    <h3 class="text-center mb-4 font-weight-bold">Technical Architecture & Intelligent Design</h3>
+                    <div class="row mb-5">
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 border-0 shadow-sm p-4 text-center">
+                                <h5 class="font-weight-bold">Multimodal Fusion</h5>
+                                <p class="small text-muted">Neoprene design integrating flex sensors, FSRs, and IMUs to capture comprehensive motion and force data.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 border-0 shadow-sm p-4 text-center">
+                                <h5 class="font-weight-bold">High-Speed Haptics</h5>
+                                <p class="small text-muted">Linear Resonant Actuators (LRAs) providing instantaneous localized vibrotactile feedback for real-time correction.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 border-0 shadow-sm p-4 text-center">
+                                <h5 class="font-weight-bold">ML Communication</h5>
+                                <p class="small text-muted">Low-latency BLE connection with Raspberry Pi powered by specialized machine learning algorithms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="js/sidebar-toggle.js"></script>
+    </body>
+</html>

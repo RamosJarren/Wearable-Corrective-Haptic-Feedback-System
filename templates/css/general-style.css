@@ -1,0 +1,260 @@
+@font-face {
+  font-family: "SAA Series W01 EM D";
+  src: url("fonts/SAA Series W01 EM D.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ===== GLOBAL BODY STYLING ===== */
+html,
+body {
+  font-family: "SAA Series W01 EM D", Arial, sans-serif;
+  color: #3c477d;
+  margin: 0;
+  background: #f7f8fb;
+  height: 100vh; /* Lock the viewport height */
+  overflow: hidden; /* Prevent the body itself from scrolling */
+}
+
+/* ===== MAIN DASHBOARD CONTAINER ===== */
+/* Container: flex layout that wraps sidebar and main content */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* Keep the container locked */
+}
+
+.main-content {
+  flex: 1; /* Takes up remaining width */
+  height: 100vh;
+  overflow-y: auto; /* This allows ONLY the content to scroll */
+  overflow-x: hidden;
+  padding: 24px;
+  position: relative;
+  -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
+}
+
+/* ===== MINI SIDEBAR (LEFT ICON BAR) ===== */
+/* Container: vertical icon navigation on the far left */
+.mini-sidebar {
+  background-color: #79b1e5;
+  width: 70px; /* Use fixed width instead of % for stability */
+  flex-shrink: 0; /* Prevent the bar from squishing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 10px;
+  gap: 20px;
+  height: 100vh;
+  z-index: 1300;
+}
+
+/* Toggle button inside mini-sidebar */
+#toggle-sidebar {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+#toggle-sidebar:focus {
+  outline: 2px solid rgba(255,255,255,0.6);
+}
+
+/* Style: mini sidebar icon links */
+.mini-sidebar a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style: mini sidebar icon images */
+.mini-sidebar img {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Style: hover effect for mini sidebar and sidebar profile image */
+.mini-sidebar a:hover img,
+.sidebar-header .side-image:hover {
+  transform: scale(1.1);
+  opacity: 0.85;
+}
+
+/* ===== MAIN SIDEBAR (NAVIGATION & PROFILE) ===== */
+/* Container: embossed sidebar with profile and navigation buttons */
+.sidebar {
+  background: linear-gradient(145deg, #e2e2e2, #c8c8c8);
+  padding: 20px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  width: 280px; /* Constant width is better for layout math */
+  position: fixed;
+  top: 0;
+  left: 70px; /* Perfectly aligns after mini-sidebar */
+  height: 100vh;
+  transform: translateX(-110%); 
+  transition: transform 360ms cubic-bezier(.2,.9,.2,1);
+  z-index: 1200;
+  box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+}
+
+/* When sidebar is opened, slide it in so it overlays the main content (after mini-sidebar width: 5%) */
+.dashboard-layout.sidebar-open .sidebar {
+  transform: translateX(0);
+}
+
+/* Backdrop that fades in when sidebar opens */
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 70px;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1150;
+}
+
+.dashboard-layout.sidebar-open .sidebar-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== SIDEBAR HEADER (PROFILE SECTION) ===== */
+/* Container: profile image + user name and email */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Slightly tighter gap for better alignment */
+  margin-bottom: 24px;
+  padding: 10px 5px;
+}
+
+/* Style: profile image with updated sync-ready styling */
+.side-image {
+  width: 60px; /* Adjusted size for better sidebar fit */
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #fff; /* Clean white border instead of thick grey */
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow instead of heavy emboss */
+  transition: transform 0.2s ease;
+  flex-shrink: 0; /* Prevents image from squishing */
+}
+
+/* Style: profile name and email text container */
+.sidebar-name {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Necessary for ellipsis to work */
+}
+
+.sidebar-name h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #3c477d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Protects layout from long names */
+  max-width: 160px;
+}
+
+.sidebar-name p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666; /* Softer color for the email */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Protects layout from long emails */
+  max-width: 160px;
+}
+
+/* Keep your hover effect but ensure it's smooth */
+.sidebar-header a:hover .side-image {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* ===== SIDEBAR NAVIGATION MENU ===== */
+/* Container: navigation menu list */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style: navigation item container */
+.sidebar-nav > li {
+  margin: 0;
+}
+
+/* Style: divider line between sections */
+.sidebar-nav .menu-divider {
+  height: 1px;
+  background: #999;
+  margin: 8px 0;
+}
+
+/* Style: menu item (text-based, not button) */
+.nav-item {
+  padding: 12px 16px;
+  color: #3c477d;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+  border-radius: 12px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* Style: menu icon */
+.nav-item .menu-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* Style: menu item hover state - rounded square highlight */
+.nav-item:hover {
+  background-color: rgba(65, 105, 225, 0.15);
+  box-shadow: inset 0 0 0 2px rgba(65, 105, 225, 0.3);
+}
+
+/* Style: submenu items (nested items) */
+.nav-item.submenu-item {
+  padding-left: 40px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .mini-sidebar {
+    width: 60px;
+  }
+  .sidebar {
+    left: 60px;
+    width: calc(100% - 60px); /* Fill screen on mobile */
+    border-radius: 0; /* Remove rounding for mobile full-width feel */
+  }
+  .sidebar-backdrop {
+      left: 60px;
+  }
+}

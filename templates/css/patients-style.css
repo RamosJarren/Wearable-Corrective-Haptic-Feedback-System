@@ -1,0 +1,153 @@
+/* ===== MAIN CONTENT & CARDS ===== */
+.main-content {
+    flex: 1;
+    background: #f8f9fa; /* Consistent light background */
+    padding: 24px;
+    min-width: 300px;
+}
+
+/* Unified Card Style */
+.card, .panel {
+    background: white;
+    margin-bottom: 24px; /* Increased for better breathing room */
+    padding: 24px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== TABLE STYLING ===== */
+.table-container {
+    overflow-x: auto; /* Always wrap tables in a container for mobile responsiveness */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: white;
+}
+
+table th {
+    background-color: #4169e1;
+    color: white;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Rounded top corners for tables (requires no border-collapse or specific logic) */
+table tr:first-child th:first-child { border-top-left-radius: 12px; }
+table tr:first-child th:last-child { border-top-right-radius: 12px; }
+
+table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+table tr:hover td {
+    background-color: #f8faff;
+}
+
+/* ===== PATIENT GRID SYSTEM ===== */
+.patients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.patient-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+}
+
+.patient-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(65, 105, 225, 0.12);
+    border-color: rgba(65, 105, 225, 0.2);
+}
+
+/* Header Section */
+.patient-header {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.patient-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+    object-fit: cover;
+    background-color: #f0f4f8; /* Fallback color */
+    flex-shrink: 0;
+}
+
+.patient-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.patient-number {
+    display: inline-block;
+    background-color: rgba(65, 105, 225, 0.1);
+    color: #4169e1;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    width: fit-content;
+    margin-bottom: 4px;
+}
+
+.patient-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0;
+}
+
+/* Card Body Sections */
+.patient-divider {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 16px 0;
+}
+
+.patient-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.detail-label {
+    font-size: 0.7rem;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.detail-value {
+    font-size: 0.9rem;
+    color: #4a5568;
+    font-weight: 600;
+}

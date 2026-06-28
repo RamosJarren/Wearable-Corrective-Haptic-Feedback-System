@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<title>HandMonitor System</title>
+		<link rel="stylesheet" href="css/general-style.css"/>
+		<link rel="stylesheet" href="css/dashboard-style.css"/>
+		<link rel="stylesheet" href="css/responsive.css"/>
+		<link href="https://db.onlinewebfonts.com/c/dd94ddf99b6082e709d2d5e47508fd56?family=SAA+Series+W01+EM+D" rel="stylesheet" />
+	</head>
+	<body>
+		<!-- ===== MAIN DASHBOARD CONTAINER ===== -->
+		<div class="dashboard-layout">
+
+			<!-- ===== MINI SIDEBAR (LEFT ICON BAR) ===== -->
+			<!-- Small vertical navigation bar on the far left with icon links -->
+			<aside class="mini-sidebar">
+				<button id="toggle-sidebar" aria-label="Toggle sidebar" aria-expanded="false">☰</button>
+				<a href="home.html"><img src="css/images/home-icon.png" alt="Home" /></a>
+			</aside>
+
+			<!-- Backdrop for sidebar when open -->
+			<div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+			<aside class="sidebar">
+                <nav>
+                    <ul class="sidebar-nav">
+                        <li class="menu-divider"></li>
+                        <li><a href="dashboard.html" class="nav-item"><span class="menu-icon"><img src="css/images/dashboard-icon.png" width="20" height="20" alt="Dashboard"/></span><span>Dashboard</span></a></li>
+                        <li><a href="patients.html" class="nav-item"><span class="menu-icon"><img src="css/images/patients-icon.png" width="20" height="20" alt="Patients"/></span><span>Patients</span></a></li>
+                        <li><a href="sessions.html" class="nav-item submenu-item">Sessions</a></li>
+                        <li><a href="data visualization.html" class="nav-item submenu-item">Data Visualization</a></li>
+                        <li class="menu-divider"></li>
+                    </ul>
+                </nav>
+            </aside>
+
+			<!-- ===== MAIN CONTENT AREA ===== -->
+			<!-- Primary content section with welcome card and dashboard cards -->
+			<main class="main-content">
+
+				<!-- Welcome Card: Greeting message + Search bar -->
+				<div class="card welcome-card">
+					<!-- Welcome Message Section (left side) -->
+					<div class="welcome-text">
+						<h1>Welcome to HandMonitor!</h1>
+						<p>Here are your latest patients and session notes.</p>
+					</div>
+				</div>
+
+				<!-- Statistics Overview Card -->
+				<div class="card">
+					<h2>Overview</h2>
+					<div class="stats-grid">
+						<div class="stat-item">
+							<div class="stat-value">4</div>
+							<div class="stat-label">Active Patients</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-value">12</div>
+							<div class="stat-label">Total Sessions</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-value">4</div>
+							<div class="stat-label">Upcoming Sessions</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-value">2026</div>
+							<div class="stat-label">Current Year</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Recent Patients Card -->
+				<div class="card">
+					<h3>Recent Patients</h3>
+					<p style="color: #666; margin-bottom: 12px; font-size: 0.9rem;">Track your active patient list and upcoming appointments.</p>
+					<div class="recent-items">
+						<div class="recent-item">
+							<div class="recent-item-info">
+								<span class="recent-item-name">Arnel Gatchalian</span>
+								<span class="recent-item-date">Session #3 • Rehab: 2026-05-18</span>
+							</div>
+							<a href="patients.html" class="recent-item-link">View →</a>
+						</div>
+						<div class="recent-item">
+							<div class="recent-item-info">
+								<span class="recent-item-name">Abner Balcos</span>
+								<span class="recent-item-date">Session #3 • Rehab: 2026-05-18</span>
+							</div>
+							<a href="patients.html" class="recent-item-link">View →</a>
+						</div>
+						<div class="recent-item">
+							<div class="recent-item-info">
+								<span class="recent-item-name">Marietta Castro</span>
+								<span class="recent-item-date">Session #3 • Rehab: 2026-05-19</span>
+							</div>
+							<a href="patients.html" class="recent-item-link">View →</a>
+						</div>
+						<div class="recent-item">
+							<div class="recent-item-info">
+								<span class="recent-item-name">Eduardo Bartolome</span>
+								<span class="recent-item-date">Session #3 • Rehab: 2026-05-19</span>
+							</div>
+							<a href="patients.html" class="recent-item-link">View →</a>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a href="patients.html" class="view-all-link">View All Patients →</a>
+					</div>
+				</div>
+
+				<!-- Upcoming Sessions Card -->
+				<div class="card">
+					<h3>Upcoming Sessions</h3>
+					<p style="color: #666; margin-bottom: 12px; font-size: 0.9rem;">Schedule and manage patient therapy sessions.</p>
+					<div class="recent-items">
+						<div class="recent-item">
+							<div class="recent-item-info">
+								<span class="recent-item-name">Arnel Gatchalian</span>
+								<span class="recent-item-date">Next Session: 2026-05-22</span>
+							</div>
+							<a href="sessions.html" class="recent-item-link">Details →</a>
+						</div>
+						<div class="recent-item">
+							<div class="recent-item-info">
+								<span class="recent-item-name">Abner Balcos</span>
+								<span class="recent-item-date">Next Session: 2026-05-22</span>
+							</div>
+							<a href="sessions.html" class="recent-item-link">Details →</a>
+						</div>
+						<div class="recent-item">
+							<div class="recent-item-info">
+								<span class="recent-item-name">Marietta Castro</span>
+								<span class="recent-item-date">Next Session: 2026-05-23</span>
+							</div>
+							<a href="sessions.html" class="recent-item-link">Details →</a>
+						</div>
+						<div class="recent-item">
+							<div class="recent-item-info">
+								<span class="recent-item-name">Eduardo Bartolome</span>
+								<span class="recent-item-date">Next Session: 2026-05-23</span>
+							</div>
+							<a href="sessions.html" class="recent-item-link">Details →</a>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a href="sessions.html" class="view-all-link">View All Sessions →</a>
+					</div>
+				</div>
+
+				<!-- Data Visualization Card -->
+				<div class="card">
+					<h3>Data Visualization</h3>
+					<p style="color: #666; margin-bottom: 12px; font-size: 0.9rem;">Visualize patient data from sensors compared to preset thresholds for therapy sessions.</p>
+					<div style="background-color: #f9f9f9; padding: 16px; border-radius: 12px; margin: 16px 0;"><div class="card-footer">
+						<a href="data visualization.html" class="view-all-link">View Data Visualization →</a>
+					</div></div>
+				</div>	
+			</main>
+		</div>
+		<script src="js/sidebar-toggle.js"></script>
+	</body>
+</html>

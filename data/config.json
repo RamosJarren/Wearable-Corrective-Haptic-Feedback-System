@@ -1,0 +1,137 @@
+{
+  
+  "system": {
+    "log_level": "INFO",
+    "debug_mode": false
+  },
+  
+  "communication": {
+    "serial_port": "/dev/ttyUSB0",
+    "baud_rate": 115200,
+    "timeout_ms": 1000,
+    "mqtt_broker": "localhost",
+    "mqtt_port": 1883,
+    "ble_scan_timeout": 30
+  },
+  
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "workers": 4,
+    "reload": false
+  },
+  
+  "database": {
+    "postgresql": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "thesis_db",
+      "user": "thesis_user",
+      "password": "thesis_password",
+      "pool_size": 10
+    },
+    "csv_dir": "./sessions",
+    "backup_dir": "./backups"
+  },
+  
+  "ml_model": {
+    "trajectory_file": "models/ideal_trajectories.json",
+    "model_file": "models/trajectory_classifier.tflite",
+    "norm_file": "models/normalization_stats.json",
+    "meta_file": "models/model_metadata.json",
+    "input_shape": [10, 10],
+    "confidence_threshold": 0.7,
+    "model_path": "./models/trajectory_classifier.h5"
+  },
+  
+  "haptic": {
+    "min_intensity": 0.1,
+    "max_intensity": 1.0,
+    "min_duration_ms": 10,
+    "max_duration_ms": 500,
+    "feedback_pattern": "pulse",
+    "error_threshold_light": 5.0,
+    "error_threshold_strong": 15.0
+  },
+  
+  "thresholds": {
+    "grip": {
+      "light_grip": 5.0,
+      "medium_grip": 10.0,
+      "strong_grip": 20.0
+    },
+    "trajectory": {
+      "light_error": 5.0,
+      "strong_error": 15.0,
+      "critical_error": 30.0
+    },
+    "latency": {
+      "warning_ms": 15,
+      "critical_ms": 20
+    }
+  },
+  
+  "sampling": {
+    "target_hz": 100,
+    "cycle_time_ms": 10,
+    "buffer_size": 100
+  },
+  
+  "sensors": {
+    "flex_sensors": {
+      "count": 5,
+      "min_adc": 100,
+      "max_adc": 900,
+      "min_angle": 0,
+      "max_angle": 90
+    },
+    "fsr_sensors": {
+      "count": 5,
+      "min_force": 0,
+      "max_force": 50
+    },
+    "imu": {
+      "type": "MPU-6050",
+      "i2c_address": "0x68",
+      "sample_rate": 100
+    }
+  },
+  
+  "actuators": {
+    "vibration_motors": {
+      "count": 5,
+      "pwm_pins": [5, 6, 7, 8, 9],
+      "pwm_frequency": 1000,
+      "min_pwm": 50,
+      "max_pwm": 255
+    },
+    "lra_actuators": {
+      "count": 5,
+      "enable_pins": [10, 11, 12, 13, 14],
+      "resonant_frequency": 200
+    }
+  },
+  
+  "battery": {
+    "monitor_enabled": true,
+    "min_voltage": 3.3,
+    "warning_threshold": 10,
+    "critical_threshold": 5,
+    "check_interval_ms": 5000
+  },
+  
+  "testing": {
+    "simulation_mode": false,
+    "use_dummy_data": false,
+    "dummy_sampling_rate": 100,
+    "dummy_finger_angle_variation": 5
+  },
+  
+  "advanced": {
+    "enable_remote_monitoring": false,
+    "cloud_sync_interval_seconds": 300,
+    "offline_mode": true,
+    "compression_enabled": true,
+    "encryption_enabled": false
+  }
+}

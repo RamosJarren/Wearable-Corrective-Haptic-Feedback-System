@@ -1,0 +1,97 @@
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+
+/* Tablet & Smaller Screens (900px and below) */
+@media (max-width: 900px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    /* Mini sidebar becomes a top navigation bar */
+    .mini-sidebar {
+        width: 100%;
+        height: 60px;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        left: 0;
+    }
+
+    /* Sidebar becomes a vertical dropdown menu */
+    .sidebar {
+        position: absolute; /* Positions it directly under the mini-sidebar */
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: auto;
+        max-height: 0; /* Hidden by default */
+        overflow: hidden;
+        background: linear-gradient(145deg, #e2e2e2, #c8c8c8);
+        border-radius: 0 0 30px 30px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        transform: none !important; /* Disable the horizontal slide */
+        transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+        padding: 0 20px; /* Vertical padding removed when closed */
+        z-index: 1200;
+    }
+
+    /* Logic: When sidebar-open class is active, the dropdown expands */
+    .dashboard-layout.sidebar-open .sidebar {
+        max-height: 80vh; /* Dropdown expands to show content */
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    /* Ensure main content is full width */
+    .main-content {
+        width: 100%;
+        padding: 16px;
+        margin-left: 0 !important;
+    }
+
+    .sidebar-backdrop {
+        display: block; /* Keep backdrop to catch clicks outside the dropdown */
+        left: 0;
+        top: 60px;
+    }
+
+    /* Layout tweaks for top bar */
+    .welcome-card {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+}
+
+/* Mobile Screens (600px and below) */
+@media (max-width: 600px) {
+    .sidebar-header {
+        flex-direction: row; /* Keep profile pic beside name for dropdown efficiency */
+        align-items: center;
+        gap: 12px;
+    }
+
+    .side-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .sidebar-name h4 {
+        font-size: 1rem;
+    }
+
+    .nav-item {
+        font-size: 0.95rem;
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .nav-item.submenu-item {
+        padding-left: 44px;
+    }
+}

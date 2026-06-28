@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HandMonitor System</title>
+    <link href="https://db.onlinewebfonts.com/c/dd94ddf99b6082e709d2d5e47508fd56?family=SAA+Series+W01+EM D" rel="stylesheet">
+    <link rel="stylesheet" href="css/hand-visual-style.css">
+</head>
+<body>
+<div class="dashboard-layout" id="dashboard-layout">
+
+    <!-- Mini Sidebar -->
+    <aside class="mini-sidebar">
+        <button id="toggle-sidebar" aria-label="Toggle sidebar" aria-expanded="false">☰</button>
+        <a href="home.html"><img src="css/images/home-icon.png" alt="Home"></a>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Main Sidebar -->
+    <aside class="sidebar">
+				<!-- Navigation Menu: Flat menu with icons and text items -->
+				<nav>
+					<ul class="sidebar-nav">
+						<li class="menu-divider"></li>
+                        <li><a href="dashboard.html" class="nav-item"><span class="menu-icon"><img src="css/images/dashboard-icon.png" width="20" height="20" alt="Dashboard"/></span><span>Dashboard</span></a></li>
+                        <li><a href="patients.html" class="nav-item"><span class="menu-icon"><img src="css/images/patients-icon.png" width="20" height="20" alt="Patients"/></span><span>Patients</span></a></li>
+						<li><a href="sessions.html" class="nav-item submenu-item">Sessions</a></li>
+                        <li><a href="data visualization.html" class="nav-item submenu-item">Data Visualization</a></li>
+                        <li class="menu-divider"></li>
+					</ul>
+				</nav>
+	</aside>
+
+    <!-- ─── MAIN CONTENT ────────────────────────────── -->
+    <div class="dashboard-container">
+
+        <!-- LEFT: Hand Panel -->
+        <main class="viewport">
+            <div class="status-header">
+                <p class="section-label">HandMonitor System</p>
+                <span id="session-status">SYSTEM OFFLINE</span>
+                <div id="grasp-label">---</div>
+            </div>
+
+            <div class="hand-container">
+                <svg id="hand-svg" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="palmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="100%" stop-color="#e2e8f0"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path d="M 100,270 C 100,325 200,325 200,270 C 210,210 205,160 195,160 L 105,160 C 95,160 90,210 100,270 Z" fill="url(#palmGrad)" stroke="#005fb8" stroke-width="2"/>
+                    <path d="M 115,310 Q 150,325 185,310" fill="none" stroke="#005fb8" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
+                    <g id="finger-layer"></g>
+                </svg>
+            </div>
+
+            <div class="control-bar">
+                <!-- Init Stream -->
+                <button class="btn btn-blue" id="btn-monitor" onclick="handleSystemToggle()">Initiate Stream</button>
+
+                <!-- Calibrate -->
+                <button class="btn btn-orange" id="btn-calibrate" onclick="startCalibration()" disabled>Calibrate</button>
+                <div class="inline-msg" id="calibrate-msg"></div>
+
+                <!-- Session Inputs -->
+                <div class="session-inputs" id="session-inputs" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+                    <div style="display: flex; gap: 10px; align-items: flex-end; width: 100%;">
+                        <div style="flex: 2;">
+                            <p class="sess-input-label" style="margin-bottom: 4px;">Patient ID</p>
+                            <input class="sess-field" id="input-patient-id" type="text" placeholder="e.g. PT-0042" style="width: 100%;" disabled />
+                        </div>
+                        <div style="flex: 1;">
+                            <p class="sess-input-label" style="margin-bottom: 4px;">K Neighbors</p>
+                            <select class="sess-field" id="input-k-value" style="width: 100%; text-align: center;" disabled>
+                                <option value="3" selected>3</option>
+                                <option value="5">5</option>
+                                <option value="7">7</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="width: 100%;">
+                        <p class="sess-input-label" style="margin-bottom: 4px;">Target Grasp</p>
+                        <select class="sess-field" id="input-task-type" style="width: 100%;" disabled>
+                            <option value="Cylindrical">Cylindrical Grasp</option>
+                            <option value="Spherical">Spherical Grasp</option>
+                            <option value="Hook_Grasp">Hook Grasp</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Begin / Stop Session -->
+                <button class="btn btn-green" id="btn-session" onclick="toggleSession()" disabled>Begin Session</button>
+                <div class="inline-msg" id="session-msg"></div>
+
+                <!-- Simulate
+                <div class="sim-wrapper">
+                    <button class="btn btn-purple" id="btn-simulate" onclick="toggleSimDropdown(event)">Simulate ▾</button>
+                    <div class="sim-dropdown" id="sim-dropdown">
+                        <button onclick="simulateGrasp('Cylindrical')">⬡ Cylindrical</button>
+                        <button onclick="simulateGrasp('Spherical')">◎ Spherical</button>
+                        <button onclick="simulateGrasp('Hook_Grasp')">↩ Hook Grasp</button>
+                    </div>
+                </div> -->
+            </div>
+        </main>
+
+        <!-- RIGHT: Data Panel -->
+        <aside class="log-container">
+
+            <!-- Row 1: Time -->
+            <div class="time-row">
+                <div class="time-box">
+                    <p class="section-label">Date</p>
+                    <span id="curr-date" class="val">--/--/--</span>
+                </div>
+                <div class="time-box">
+                    <p class="section-label">System Time</p>
+                    <span id="curr-time" class="val">00:00:00</span>
+                </div>
+                <div class="time-box">
+                    <p class="section-label">Session Uptime</p>
+                    <span id="sess-time" class="val">00:00</span>
+                </div>
+            </div>
+
+            <!-- Row 2: System Status (polls GET /api/status) -->
+            <div class="sys-status-row">
+                <span class="ss-title">System Status</span>
+                <div class="ss-items">
+                    <div class="ss-item">
+                        <div class="ss-dot offline" id="ble-dot"></div>
+                        <span class="ss-label">BLE</span>
+                        <span class="ss-value" id="ble-status">OFFLINE</span>
+                    </div>
+                    <div class="ss-divider"></div>
+                    <div class="ss-item">
+                        <span class="ss-label">Sampling</span>
+                        <span class="ss-value" id="sample-rate">-- Hz</span>
+                    </div>
+                    <div class="ss-divider"></div>
+                    <div class="ss-item">
+                        <span class="ss-label">Latency</span>
+                        <span class="ss-value" id="latency">-- ms</span>
+                    </div>
+                    <div class="ss-divider"></div>
+                    <div class="ss-item">
+                        <span class="ss-label">Session</span>
+                        <span class="ss-value" id="active-session">NONE</span>
+                    </div>
+                    <div class="ss-divider"></div>
+                    <div class="ss-item">
+                        <span class="ss-label">Frames</span>
+                        <span class="ss-value" id="buffer-size">0 FPS</span>
+                    </div>
+                    <div class="ss-divider"></div>
+                    <div class="ss-item">
+                        <span class="ss-label">Confidence</span>
+                        <span class="ss-value" id="ml-smoothness">--%</span>
+                    </div>
+                    <div class="ss-divider"></div>
+                </div>
+            </div>
+
+            <!-- Row 3: Digit Table + IMU (polls GET /api/data/current) -->
+            <div class="data-row">
+                <div class="data-card">
+                    <p class="section-label">Sensor Array</p>
+                    <div class="waiting-msg" id="waiting-sensor">Waiting for sensor data…</div>
+                    <table class="data-table" id="sensor-table">
+                        <thead>
+                            <tr>
+                                <th>Digit</th>
+                                <th>Flex %</th>
+                                <th>Force %</th>
+                                <th>Feedback</th>
+                            </tr>
+                        </thead>
+                        <tbody id="finger-data-log">
+                            </tbody>
+                    </table>
+                </div>
+
+                <div class="imu-panel graph-card" style="display: flex; flex-direction: column;">
+                    <div class="graph-header">
+                        <p class="section-label" style="margin:0">Accelerator Kinematics (m/s²)</p>
+                        <span class="graph-tag">Line</span>
+                    </div>
+                    
+                    <div class="imu-values" style="display: flex; justify-content: space-around; margin-bottom: 10px; font-weight: bold;">
+                        <div class="imu-val-item">
+                            <span style="color:#ff5555">X: </span><span id="acc-x" style="color:#ff5555; font-family: monospace;">0.00</span>
+                        </div>
+                        <div class="imu-val-item">
+                            <span style="color:#44dd44">Y: </span><span id="acc-y" style="color:#44dd44; font-family: monospace;">0.00</span>
+                        </div>
+                        <div class="imu-val-item">
+                            <span style="color:#4499ff">Z: </span><span id="acc-z" style="color:#4499ff; font-family: monospace;">0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="chart-wrap" style="flex:1; min-height:150px; position: relative;">
+                        <div class="chart-legend">
+                            <span style="color:#ff5555">● X</span>
+                            <span style="color:#44dd44">● Y</span>
+                            <span style="color:#4499ff">● Z</span>
+                        </div>
+                        <canvas id="chart-imu"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4: Three Graphs -->
+            <div class="graphs-row">
+
+                <!-- Radar – Digit Flexion -->
+                <div class="graph-card">
+                    <div class="graph-header">
+                        <p class="section-label" style="margin:0">Digit Flexion</p>
+                        <span class="graph-tag">Radar</span>
+                    </div>
+                    <div class="chart-wrap">
+                        <canvas id="chart-flex"></canvas>
+                    </div>
+                </div>
+
+				<!-- H-Bar – Force Sensor -->
+                <div class="graph-card">
+                    <div class="graph-header">
+                        <p class="section-label" style="margin:0">Force Sensor</p>
+                        <span class="graph-tag">V-Bar</span>
+                    </div>
+                    <div class="chart-wrap">
+                        <canvas id="chart-fsr"></canvas>
+                    </div>
+                </div>
+                <!-- KNN Distance Chart -->
+                <div class="graph-card">
+                    <div class="graph-header">
+                        <p class="section-label" style="margin:0">KNN Distance</p>
+                        <span class="graph-tag">Centroid</span>
+                    </div>
+                    <div class="chart-wrap" style="position:relative">
+                        <canvas id="chart-error"></canvas>
+                    </div>
+                </div>
+            </div><!-- /graphs-row -->
+        </aside>
+    </div><!-- /dashboard-container -->
+</div><!-- /dashboard-layout -->
+
+<!-- Session Metrics Overlay -->
+<div class="metrics-overlay" id="metrics-overlay">
+    <div class="metrics-box">
+        <div class="metrics-title">📊 Session Results</div>
+        <div class="metrics-grid" id="metrics-grid"></div>
+        <button class="btn btn-blue metrics-close" onclick="document.getElementById('metrics-overlay').classList.remove('show')">Close</button>
+    </div>
+</div>
+<script src="js/api.js"></script>
+<script src="js/hand-visual-script.js"></script>
+</body>
+</html>

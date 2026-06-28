@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<title>HandMonitor System</title>
+		<link rel="stylesheet" href="css/general-style.css">
+		<link rel="stylesheet" href="css/sessions-style.css">
+		<link rel="stylesheet" href="css/responsive.css">
+		<link href="https://db.onlinewebfonts.com/c/dd94ddf99b6082e709d2d5e47508fd56?family=SAA+Series+W01+EM+D" rel="stylesheet">
+  </head>
+  <body>
+      <!-- ===== MAIN DASHBOARD CONTAINER ===== -->
+		<div class="dashboard-layout">
+
+			<!-- ===== MINI SIDEBAR (LEFT ICON BAR) ===== -->
+			<!-- Small vertical navigation bar on the far left with icon links -->
+			<aside class="mini-sidebar">
+				<button id="toggle-sidebar" aria-label="Toggle sidebar" aria-expanded="false">☰</button>
+				<a href="home.html"><img src="css/images/home-icon.png" alt="Home" /></a>
+			</aside>
+
+			<!-- Backdrop for sidebar when open -->
+			<div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+			<!-- ===== MAIN SIDEBAR (PROFILE & NAVIGATION) ===== -->
+			<!-- Embossed sidebar with user profile info and main navigation buttons -->
+			<aside class="sidebar">
+				<!-- Navigation Menu: Flat menu with icons and text items -->
+				<nav>
+					<ul class="sidebar-nav">
+						<li class="menu-divider"></li>
+                        <li><a href="dashboard.html" class="nav-item"><span class="menu-icon"><img src="css/images/dashboard-icon.png" width="20" height="20" alt="Dashboard"/></span><span>Dashboard</span></a></li>
+                        <li><a href="patients.html" class="nav-item"><span class="menu-icon"><img src="css/images/patients-icon.png" width="20" height="20" alt="Patients"/></span><span>Patients</span></a></li>
+						<li><a href="sessions.html" class="nav-item submenu-item">Sessions</a></li>
+                        <li><a href="data visualization.html" class="nav-item submenu-item">Data Visualization</a></li>
+                        <li class="menu-divider"></li>
+					</ul>
+				</nav>
+			</aside>
+
+          <!-- ===== MAIN CONTENT AREA ===== -->
+          <!-- Primary content section with session information -->
+          <main class="main-content">
+
+              <!-- Sessions Section -->
+              <section id="sessions" class="panel">
+                  <h2>Patient Sessions</h2>
+                  <p style="color: #666; margin-bottom: 20px;"><a href="patients.html" class="back-link">← Back to Patients List</a></p>
+                  
+                  <!-- Sessions Container -->
+                  <div class="sessions-container">
+                      
+                      <!-- Session Card 1: Arnel Gatchalian -->
+                      <div class="session-card">
+                          <div class="session-header">
+                              <img src="css/images/person-icon.png" alt="Arnel Gatchalian" class="session-image" />
+                              <div class="session-info">
+                                  <div>
+                                      <span class="session-patient-number">Patient #001</span>
+                                      <h3 class="session-patient-name">Arnel Gatchalian</h3>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="session-divider"></div>
+                          
+                          <!-- Current Session Info -->
+                          <div class="session-details">
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Rehabilitation Start Date</span>
+                                  <span class="session-detail-value">2019-09-19</span>
+                              </div>
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Current Session</span>
+                                  <span class="session-detail-value">#3</span>
+                              </div>
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Next Session Date</span>
+                                  <span class="session-detail-value">2026-05-22</span>
+                              </div>
+                          </div>
+                          
+                          <!-- Previous Sessions -->
+                          <div class="previous-sessions">
+                              <div class="previous-sessions-title">Previous Session Dates</div>
+                              <div class="sessions-timeline">
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 3</span>
+                                      <span class="timeline-date">2026-05-18</span>
+                                  </div>
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 2</span>
+                                      <span class="timeline-date">2026-05-18</span>
+                                  </div>
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 1</span>
+                                      <span class="timeline-date">2026-05-18</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <!-- Session Card 2: Abner Balcos -->
+                      <div class="session-card">
+                          <div class="session-header">
+                              <img src="css/images/person-icon.png" alt="Abner Balcos" class="session-image" />
+                              <div class="session-info">
+                                  <div>
+                                      <span class="session-patient-number">Patient #002</span>
+                                      <h3 class="session-patient-name">Abner Balcos</h3>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="session-divider"></div>
+                          
+                          <!-- Current Session Info -->
+                          <div class="session-details">
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Rehabilitation Start Date</span>
+                                  <span class="session-detail-value">2025-10-24</span>
+                              </div>
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Current Session</span>
+                                  <span class="session-detail-value">#3</span>
+                              </div>
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Next Session Date</span>
+                                  <span class="session-detail-value">2026-05-22</span>
+                              </div>
+                          </div>
+                          
+                          <!-- Previous Sessions -->
+                          <div class="previous-sessions">
+                              <div class="previous-sessions-title">Previous Session Dates</div>
+                              <div class="sessions-timeline">
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 3</span>
+                                      <span class="timeline-date">2026-05-18</span>
+                                  </div>
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 2</span>
+                                      <span class="timeline-date">2026-05-18</span>
+                                  </div>
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 1</span>
+                                      <span class="timeline-date">2026-05-18</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <!-- Session Card 3: Marietta Castro -->
+                      <div class="session-card">
+                          <div class="session-header">
+                              <img src="css/images/person-icon.png" alt="Marietta Castro" class="session-image" />
+                              <div class="session-info">
+                                  <div>
+                                      <span class="session-patient-number">Patient #003</span>
+                                      <h3 class="session-patient-name">Marietta Castro</h3>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="session-divider"></div>
+                          
+                          <!-- Current Session Info -->
+                          <div class="session-details">
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Rehabilitation Start Date</span>
+                                  <span class="session-detail-value">2013-09-09</span>
+                              </div>
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Current Session</span>
+                                  <span class="session-detail-value">#3</span>
+                              </div>
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Next Session Date</span>
+                                  <span class="session-detail-value">2026-05-23</span>
+                              </div>
+                          </div>
+                          
+                          <!-- Previous Sessions -->
+                          <div class="previous-sessions">
+                              <div class="previous-sessions-title">Previous Session Dates</div>
+                              <div class="sessions-timeline">
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 3</span>
+                                      <span class="timeline-date">2026-05-19</span>
+                                  </div>
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 2</span>
+                                      <span class="timeline-date">2026-05-19</span>
+                                  </div>
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 1</span>
+                                      <span class="timeline-date">2026-05-19</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <!-- Session Card 4: Eduardo Bartolome -->
+                      <div class="session-card">
+                          <div class="session-header">
+                              <img src="css/images/person-icon.png" alt="Eduardo Bartolome" class="session-image" />
+                              <div class="session-info">
+                                  <div>
+                                      <span class="session-patient-number">Patient #004</span>
+                                      <h3 class="session-patient-name">Eduardo Bartolome</h3>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="session-divider"></div>
+                          
+                          <!-- Current Session Info -->
+                          <div class="session-details">
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Rehabilitation Start Date</span>
+                                  <span class="session-detail-value">2024-02-10</span>
+                              </div>
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Current Session</span>
+                                  <span class="session-detail-value">#3</span>
+                              </div>
+                              <div class="session-detail-item">
+                                  <span class="session-detail-label">Next Session Date</span>
+                                  <span class="session-detail-value">2026-05-23</span>
+                              </div>
+                          </div>
+                          
+                          <!-- Previous Sessions -->
+                          <div class="previous-sessions">
+                              <div class="previous-sessions-title">Previous Session Dates</div>
+                              <div class="sessions-timeline">
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 3</span>
+                                      <span class="timeline-date">2026-05-19</span>
+                                  </div>
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 2</span>
+                                      <span class="timeline-date">2026-05-19</span>
+                                  </div>
+                                  <div class="timeline-item">
+                                      <span class="timeline-session-num">Session 1</span>
+                                      <span class="timeline-date">2026-05-19</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </section>
+          </main>
+      </div>
+	  <script src="js/sidebar-toggle.js"></script>
+  </body>
+</html>
